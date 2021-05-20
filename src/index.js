@@ -1,20 +1,23 @@
 import Vue from './vue'
+Vue.mixin({
+  created() {
+    console.log("我是全局混入");
+  },
+});
+
 // Vue实例化
 let vm = new Vue({
   el: "#app",
   data() {
     return {
-      a: 123,
+      a: { a: { a: { b: 456 } } },
+      aa: 1,
+      bb: 2,
     };
   },
-  // render(h) {
-  //   return h('div',{id:'a'},'hello')
-  // },
-  template: `<div id="a">hello {{a}}</div>`,
+  created() {
+    console.log("我是自己的");
+  },
+  template: `<div id="a">hello 这是bbbhh我自己写的Vue{{name}}
+          </div>`,
 });
-
-  // 我们在这里模拟更新
-setInterval(() => {
-  vm.a += vm.a;
-  // 此方法是刷新视图的核心
-}, 1000);
